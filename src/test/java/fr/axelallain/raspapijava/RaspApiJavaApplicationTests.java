@@ -1,0 +1,13 @@
+package fr.axelallain.raspapijava;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class RaspApiJavaApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
