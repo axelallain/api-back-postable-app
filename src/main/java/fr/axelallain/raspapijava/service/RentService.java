@@ -8,9 +8,13 @@ import java.util.Optional;
 
 public interface RentService {
 
+    Rent create(RentDto rentDto);
+
     List<Rent> findAllByUsernameAndStatus(String username, String status);
 
-    Rent save(RentDto rentDto);
-
     Optional<Rent> findById(int id);
+
+    // Rent update(RentDto rentDto);
+
+    void deleteById(int id);
 }

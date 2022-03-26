@@ -14,9 +14,6 @@ public class Letterbox {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
-    private String username;
-
     @OneToOne(mappedBy = "letterbox")
     @JsonIgnore
     private Rent rent;
@@ -30,14 +27,6 @@ public class Letterbox {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public Rent getRent() {
@@ -60,7 +49,6 @@ public class Letterbox {
     public String toString() {
         return "Letterbox{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
                 ", rent=" + rent +
                 ", status='" + status + '\'' +
                 '}';

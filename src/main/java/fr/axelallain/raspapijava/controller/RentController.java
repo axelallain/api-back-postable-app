@@ -19,18 +19,30 @@ public class RentController {
         this.rentService = rentService;
     }
 
+    @PostMapping("/rents")
+    public Rent create(@RequestBody RentDto rentDto) {
+        return rentService.create(rentDto);
+    }
+
     @GetMapping("/rents")
     public List<Rent> findByUsername(@RequestParam String username, @RequestParam String status) {
         return rentService.findAllByUsernameAndStatus(username, status);
     }
 
-    @PostMapping("/rents")
-    public Rent save(@RequestBody RentDto rentDto) {
-        return rentService.save(rentDto);
-    }
-
     @GetMapping("/rents/{id}")
     public Optional<Rent> findById(@PathVariable int id) {
         return rentService.findById(id);
+    }
+
+    /*
+    @PutMapping("/rents/{id}")
+    public Rent update(@PathVariable int id) {
+        return rentService.update();
+    }
+    */
+
+    @DeleteMapping("/rents/{id}")
+    public void deleteById(@PathVariable int id) {
+        rentService.deleteById(id);
     }
 }
