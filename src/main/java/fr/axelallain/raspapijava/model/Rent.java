@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @JsonIdentityInfo(
@@ -19,12 +20,18 @@ public class Rent {
     private String username;
 
     @OneToOne
-    @JoinColumn(name = "letterbox_id")
+    @JoinColumn(name = "letterbox_id", nullable = false)
     private Letterbox letterbox;
 
     @ManyToOne
     @JoinColumn(name = "googleUser_id")
     private GoogleUser googleUser;
+
+    @Column(name = "starting_date", nullable = false)
+    private LocalDateTime startingDate;
+
+    @Column(name = "ending_date", nullable = false)
+    private LocalDateTime endingDate;
 
     @Column(nullable = false)
     private String status;
@@ -71,6 +78,22 @@ public class Rent {
         this.googleUser = googleUser;
     }
 
+    public LocalDateTime getStartingDate() {
+        return startingDate;
+    }
+
+    public void setStartingDate(LocalDateTime startingDate) {
+        this.startingDate = startingDate;
+    }
+
+    public LocalDateTime getEndingDate() {
+        return endingDate;
+    }
+
+    public void setEndingDate(LocalDateTime endingDate) {
+        this.endingDate = endingDate;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -86,6 +109,8 @@ public class Rent {
                 ", username='" + username + '\'' +
                 ", letterbox=" + letterbox +
                 ", googleUser=" + googleUser +
+                ", startingDate=" + startingDate +
+                ", endingDate=" + endingDate +
                 ", status='" + status + '\'' +
                 '}';
     }

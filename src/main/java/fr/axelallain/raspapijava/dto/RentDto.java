@@ -4,19 +4,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.axelallain.raspapijava.model.GoogleUser;
 import fr.axelallain.raspapijava.model.Letterbox;
 
+import java.time.LocalDateTime;
+
 public class RentDto {
 
     @JsonProperty("username")
     private String username;
 
-    @JsonProperty("letterbox")
-    private Letterbox letterbox;
-
-    @JsonProperty("googleUser")
-    private GoogleUser googleUser;
+    @JsonProperty("letterbox_id")
+    private int letterboxId;
 
     @JsonProperty("status")
     private String status;
+
+    @JsonProperty("days")
+    private int days;
 
     public RentDto() {
     }
@@ -29,20 +31,12 @@ public class RentDto {
         this.username = username;
     }
 
-    public Letterbox getLetterbox() {
-        return letterbox;
+    public int getLetterboxId() {
+        return letterboxId;
     }
 
-    public void setLetterbox(Letterbox letterbox) {
-        this.letterbox = letterbox;
-    }
-
-    public GoogleUser getGoogleUser() {
-        return googleUser;
-    }
-
-    public void setGoogleUser(GoogleUser googleUser) {
-        this.googleUser = googleUser;
+    public void setLetterboxId(int letterboxId) {
+        this.letterboxId = letterboxId;
     }
 
     public String getStatus() {
@@ -51,5 +45,13 @@ public class RentDto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
     }
 }

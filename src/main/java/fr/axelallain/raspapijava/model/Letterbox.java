@@ -14,6 +14,18 @@ public class Letterbox {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "adresse", nullable = false)
+    private String adresse;
+
+    @Column(name = "code_postal", nullable = false)
+    private int codePostal;
+
+    @Column(name = "ville", nullable = false)
+    private String ville;
+
+    @Column(name = "pays", nullable = false)
+    private String pays;
+
     @OneToOne(mappedBy = "letterbox")
     @JsonIgnore
     private Rent rent;
@@ -27,6 +39,38 @@ public class Letterbox {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public int getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(int codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
     }
 
     public Rent getRent() {
@@ -49,6 +93,10 @@ public class Letterbox {
     public String toString() {
         return "Letterbox{" +
                 "id=" + id +
+                ", adresse='" + adresse + '\'' +
+                ", codePostal=" + codePostal +
+                ", ville='" + ville + '\'' +
+                ", pays='" + pays + '\'' +
                 ", rent=" + rent +
                 ", status='" + status + '\'' +
                 '}';
