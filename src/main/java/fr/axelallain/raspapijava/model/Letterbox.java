@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class,property="@id", scope=Letterbox.class)
@@ -14,21 +15,21 @@ public class Letterbox {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "adresse", nullable = false)
-    private String adresse;
+    @Column(name = "address", nullable = false)
+    private String address;
 
-    @Column(name = "code_postal", nullable = false)
-    private int codePostal;
+    @Column(name = "postal_code", nullable = false)
+    private int postalCode;
 
-    @Column(name = "ville", nullable = false)
-    private String ville;
+    @Column(name = "city", nullable = false)
+    private String city;
 
-    @Column(name = "pays", nullable = false)
-    private String pays;
+    @Column(name = "country", nullable = false)
+    private String country;
 
-    @OneToOne(mappedBy = "letterbox")
+    @OneToMany(mappedBy = "letterbox")
     @JsonIgnore
-    private Rent rent;
+    private Collection<Rent> rents;
 
     @Column(nullable = false)
     private String status;
@@ -41,44 +42,44 @@ public class Letterbox {
         this.id = id;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public int getCodePostal() {
-        return codePostal;
+    public int getPostalCode() {
+        return postalCode;
     }
 
-    public void setCodePostal(int codePostal) {
-        this.codePostal = codePostal;
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
     }
 
-    public String getVille() {
-        return ville;
+    public String getCity() {
+        return city;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getPays() {
-        return pays;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPays(String pays) {
-        this.pays = pays;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public Rent getRent() {
-        return rent;
+    public Collection<Rent> getRents() {
+        return rents;
     }
 
-    public void setRent(Rent rent) {
-        this.rent = rent;
+    public void setRents(Collection<Rent> rents) {
+        this.rents = rents;
     }
 
     public String getStatus() {
@@ -93,11 +94,11 @@ public class Letterbox {
     public String toString() {
         return "Letterbox{" +
                 "id=" + id +
-                ", adresse='" + adresse + '\'' +
-                ", codePostal=" + codePostal +
-                ", ville='" + ville + '\'' +
-                ", pays='" + pays + '\'' +
-                ", rent=" + rent +
+                ", address='" + address + '\'' +
+                ", postalCode=" + postalCode +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", rents=" + rents +
                 ", status='" + status + '\'' +
                 '}';
     }

@@ -19,7 +19,7 @@ public class Rent {
     @Column(nullable = false)
     private String username;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "letterbox_id", nullable = false)
     private Letterbox letterbox;
 
