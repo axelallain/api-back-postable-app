@@ -65,7 +65,7 @@ public class RentServiceImpl implements RentService {
     @Override
     public List<Rent> findAllByUsernameAndStatus(String username, String status) {
         // NO EXCEPTION WHEN AN EMPTY LIST IS RETURNED BECAUSE IT CAN BE USEFUL TO GET AN EMPTY LIST.
-        return rentDaoInterface.findAllByUsernameAndStatus(username, status);
+        return rentDaoInterface.findAllByUsernameAndStatusOrderByEndingDateDesc(username, status);
     }
 
     @Override
