@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class,property="@id", scope=Letterbox.class)
 public class Letterbox {
 
     @Id
