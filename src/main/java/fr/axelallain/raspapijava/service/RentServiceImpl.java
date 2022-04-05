@@ -94,4 +94,17 @@ public class RentServiceImpl implements RentService {
             rentDaoInterface.deleteById(id);
         }
     }
+
+    @Override
+    public Rent endRent(int id) {
+        Optional<Rent> optionalRent = findById(id);
+        if(optionalRent.isEmpty()) {
+            throw new RentNotFoundException("No rent found for the given id.");
+        } else {
+            Rent rent = optionalRent.get();
+            rent.setStatus("expired");
+            rentDaoInterface.save(rent);
+            return rent;
+        }
+    }
 }

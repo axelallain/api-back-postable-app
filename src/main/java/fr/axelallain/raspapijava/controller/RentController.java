@@ -41,8 +41,9 @@ public class RentController {
     }
     */
 
-    @DeleteMapping("/rents/{id}")
-    public void deleteById(@PathVariable int id) {
-        rentService.deleteById(id);
+    @PutMapping("/endrent/{id}")
+    public Rent endRent(@PathVariable int id) {
+        // Should require the email of the user linked to this rent for security purpose.
+        return rentService.endRent(id);
     }
 }

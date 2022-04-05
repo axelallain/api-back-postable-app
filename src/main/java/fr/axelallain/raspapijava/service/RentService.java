@@ -17,4 +17,6 @@ public interface RentService {
     // Rent update(RentDto rentDto);
 
     void deleteById(int id);
+
+    Rent endRent(int id);
 }
