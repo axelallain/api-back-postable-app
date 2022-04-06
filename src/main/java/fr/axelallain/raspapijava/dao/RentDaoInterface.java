@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface RentDaoInterface extends JpaRepository<Rent, Integer> {
 
-    List<Rent> findAllByUsernameAndStatusOrderByEndingDateDesc(String username, String status);
+    List<Rent> findAllByUsernameAndStatusOrderByStartingDateDesc(String username, String status);
 }
