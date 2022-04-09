@@ -34,6 +34,11 @@ public class RentController {
         return rentService.findById(id);
     }
 
+    @GetMapping("/rentsbystatus")
+    public List<Rent> findAllByStatus(@RequestParam String status) {
+        return rentService.findAllByStatus(status);
+    }
+
     /*
     @PutMapping("/rents/{id}")
     public Rent update(@PathVariable int id) {

@@ -10,4 +10,6 @@ import java.util.List;
 public interface RentDaoInterface extends JpaRepository<Rent, Integer> {
 
     List<Rent> findAllByUsernameAndStatusOrderByStartingDateDesc(String username, String status);
+
+    List<Rent> findAllByStatus(String status);
 }

@@ -14,6 +14,8 @@ public interface RentService {
 
     Optional<Rent> findById(int id);
 
+    List<Rent> findAllByStatus(String status);
+
     // Rent update(RentDto rentDto);
 
     void deleteById(int id);

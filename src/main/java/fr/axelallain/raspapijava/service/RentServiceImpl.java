@@ -38,7 +38,9 @@ public class RentServiceImpl implements RentService {
 
             Optional<Letterbox> optionalLetterbox = letterboxService.findById(rentDto.getLetterboxId());
             if (optionalLetterbox.isPresent()) {
-                rent.setLetterbox(optionalLetterbox.get());
+                Letterbox letterbox = optionalLetterbox.get();
+                letterbox.setAvailable(false);
+                rent.setLetterbox(letterbox);
             } else {
                 throw new LetterboxNotFoundException("No letterbox found for the given id. Rent creation failed.");
             }
@@ -78,6 +80,12 @@ public class RentServiceImpl implements RentService {
         }
     }
 
+    @Override
+    public List<Rent> findAllByStatus(String status) {
+        // NO EXCEPTION WHEN AN EMPTY LIST IS RETURNED BECAUSE IT CAN BE USEFUL TO GET AN EMPTY LIST.
+        return rentDaoInterface.findAllByStatus(status);
+    }
+
     /*
     @Override
     public Rent update(RentDto rentDto) {
@@ -104,6 +112,15 @@ public class RentServiceImpl implements RentService {
             Rent rent = optionalRent.get();
             rent.setStatus("expired");
             rent.setEndingDate(LocalDateTime.now());
+
+            Optional<Letterbox> optionalLetterbox = letterboxService.findById(rent.getLetterbox().getId());
+            if (optionalLetterbox.isEmpty()) {
+                throw new LetterboxNotFoundException("No letterbox found for the given rent.");
+            } else {
+                Letterbox letterbox = optionalLetterbox.get();
+                letterbox.setAvailable(true);
+            }
+
             rentDaoInterface.save(rent);
             return rent;
         }
