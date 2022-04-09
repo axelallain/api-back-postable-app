@@ -2,10 +2,7 @@ package fr.axelallain.raspapijava.service;
 
 import fr.axelallain.raspapijava.dao.RentDaoInterface;
 import fr.axelallain.raspapijava.dto.RentDto;
-import fr.axelallain.raspapijava.exception.LetterboxNotFoundException;
-import fr.axelallain.raspapijava.exception.RentDurationException;
-import fr.axelallain.raspapijava.exception.RentNotFoundException;
-import fr.axelallain.raspapijava.exception.UserMultipleOngoingRentsException;
+import fr.axelallain.raspapijava.exception.*;
 import fr.axelallain.raspapijava.model.Letterbox;
 import fr.axelallain.raspapijava.model.Rent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +36,12 @@ public class RentServiceImpl implements RentService {
             Optional<Letterbox> optionalLetterbox = letterboxService.findById(rentDto.getLetterboxId());
             if (optionalLetterbox.isPresent()) {
                 Letterbox letterbox = optionalLetterbox.get();
-                letterbox.setAvailable(false);
-                rent.setLetterbox(letterbox);
+                if(letterbox.getAvailable() == Boolean.FALSE) {
+                    throw new LetterboxNotAvailableException("This letterbox is not available.");
+                } else {
+                    letterbox.setAvailable(false);
+                    rent.setLetterbox(letterbox);
+                }
             } else {
                 throw new LetterboxNotFoundException("No letterbox found for the given id. Rent creation failed.");
             }
