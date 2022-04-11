@@ -25,4 +25,9 @@ public class LetterboxServiceImpl implements LetterboxService {
     public List<Letterbox> findAllByAvailable(Boolean available) {
         return letterboxDaoInterface.findAllByAvailable(available);
     }
+
+    @Override
+    public List<Letterbox> findAll() {
+        return letterboxDaoInterface.findAll();
+    }
 }

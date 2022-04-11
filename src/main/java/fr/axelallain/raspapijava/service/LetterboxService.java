@@ -10,4 +10,6 @@ public interface LetterboxService {
     Optional<Letterbox> findById(int id);
 
     List<Letterbox> findAllByAvailable(Boolean available);
+
+    List<Letterbox> findAll();
 }
