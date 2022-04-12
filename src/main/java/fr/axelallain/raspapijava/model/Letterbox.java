@@ -1,16 +1,11 @@
 package fr.axelallain.raspapijava.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class Letterbox {
 
     @Id
@@ -36,6 +31,7 @@ public class Letterbox {
     private String longitude;
 
     @OneToMany(mappedBy = "letterbox")
+    @JsonIgnore
     private Collection<Rent> rents;
 
     @Column(nullable = false)
