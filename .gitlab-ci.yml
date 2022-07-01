@@ -6,7 +6,6 @@ stages:          # List of stages for jobs, and their order of execution
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   image: docker:stable
-  privileged: true
   script:
     - echo "Building the docker image from Dockerfile..."
     - docker build -t api-postable:1.0 .
@@ -22,7 +21,6 @@ unit-test-job:   # This job runs in the test stage.
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   image: docker:stable
-  privileged: true
   script:
     - echo "Pushing to Dockerhub..."
     - docker tag api-postable:1.0 axelallain/api-postable:1.0
