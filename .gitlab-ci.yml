@@ -22,6 +22,9 @@ build-job:       # This job runs in the build stage, which runs first.
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   image: docker:stable
+  before_script:
+    - echo "Logging in to Dockerhub..."
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   script:
     - echo "Pushing to Dockerhub..."
     - docker tag api-postable:1.0 axelallain/api-postable:1.0
