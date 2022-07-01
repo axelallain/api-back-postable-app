@@ -5,6 +5,7 @@ stages:          # List of stages for jobs, and their order of execution
 
 unit-test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
+  image: openjdk:11
   script:
     - echo "Running unit tests..."
     - ./gradlew test
