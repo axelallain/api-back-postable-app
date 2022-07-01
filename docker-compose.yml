@@ -1,14 +1,30 @@
 version: '3'
+
+networks:
+  postablenet:
+    external: true
+
 services:
-    api:
-        image: axelallain/api-postable:1.0
-        ports:
-         - 8080:8080
-    db:
+    postgres:
         image: postgres
         ports:
-         - 5432:5432
+          - 5432:5432
         environment:
          - POSTGRES_USER=postgres
-         - POSTGRES_PASSWORD=
-        
+         - POSTGRES_PASSWORD=postgres
+         - POSTGRES_DB=rasp
+        healthcheck:
+          test: "pg_isready --username=postgres && psql --username=postgres --list"
+          timeout: 10s
+          retries: 20
+        networks:
+          - postablenet
+    api:
+        image: axelallain/api-postable:1.0
+        depends_on:
+          postgres:
+            condition: service_healthy
+        ports:
+          - 8080:8080
+        networks:
+          - postablenet
