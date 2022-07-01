@@ -36,10 +36,6 @@ public class RentControllerTests {
     @MockBean
     private RentService rentService;
 
-    @Test
-    void contextLoads() {
-    }
-
     /*
 
     @Test
