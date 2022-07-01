@@ -14,14 +14,14 @@ unit-test-job:   # This job runs in the test stage.
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
-  image: docker:18-git
+  image: docker:stable
   script:
     - echo "Building the docker image from Dockerfile..."
     - docker build -t api-postable:1.0 .
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-  image: docker:18-git
+  image: docker:stable
   script:
     - echo "Pushing to Dockerhub..."
     - docker tag api-postable:1.0 axelallain/api-postable:1.0
