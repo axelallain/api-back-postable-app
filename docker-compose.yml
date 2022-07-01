@@ -1,0 +1,14 @@
+version: '3'
+services:
+    api:
+        image: axelallain/api-postable:1.0
+        ports:
+         - 8080:8080
+    db:
+        image: postgres
+        ports:
+         - 5432:5432
+        environment:
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=
+        
