@@ -1,3 +1,4 @@
+/*
 variable "token" {
     description = "Linode API access token."
     type = string
@@ -13,3 +14,4 @@ variable "root_pass" {
     description = "Password for the root user."
     default = "YOUR_ROOT_PASSWORD"
 }
+*/
