@@ -13,6 +13,12 @@
         state: present
         enabled: yes
 
+    - name: Install Docker
+      ansible.builtin.yum:
+        name: docker
+        state: latest
+        update_cache: true
+
     - name: Start Docker service
       ansible.builtin.service:
         name: "docker"
