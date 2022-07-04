@@ -5,16 +5,15 @@
   become: yes
   become_user: root
   tasks:
-    - name: Install Docker
-      ansible.builtin.yum:
-        name:
-          - docker-ce
-          - docker-ce-cli
-          - containerd.io
-        state: latest
-        update_cache: true
+    - name: Add Docker repository
+      ansible.builtin.yum_repository:
+        name: "docker repository"
+        description: "This repository is required to install Docker."
+        baseurl: "https://download.docker.com/linux/centos/docker-ce.repo"
+        state: present
+        enabled: yes
 
-    - name: Start Docker
+    - name: Start Docker service
       ansible.builtin.service:
         name: "docker"
         enabled: true
