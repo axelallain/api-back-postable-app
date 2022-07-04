@@ -32,7 +32,7 @@ build-job:       # This job runs in the build stage, which runs first.
 deploy-dev-job:
   stage: deploy
   before_script:
-    - ssh $SSH_USER@$DEV_ENV_IP_ADDRESS
+    - ssh -T $SSH_USER@$DEV_ENV_IP_ADDRESS
   script:
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker run -p 8080:8080 axelallain/api-postable:latest
