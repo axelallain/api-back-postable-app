@@ -35,4 +35,4 @@ deploy-dev-job:
     - ssh root@$DEV_ENV_IP_ADDRESS
   script:
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - docker pull axelallain/api-postable:latest
+    - docker run -p 8080:8080 axelallain/api-postable:latest
