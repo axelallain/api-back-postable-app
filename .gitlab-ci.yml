@@ -38,4 +38,5 @@ deploy-dev-job:
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD &&
         docker ps -aq | xargs -r docker stop &&
         docker ps -aq | xargs -r docker rm &&
+        docker run -d -p 5432:5432 -e POSTGRES_USER=$DB_USER POSTGRES_PASSWORD=$DB_PASSWORD POSTGRES_DB=$DB_NAME postgres &&
         docker run -d -p 8080:8080 axelallain/api-postable:1.0"
