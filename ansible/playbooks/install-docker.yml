@@ -1,7 +1,7 @@
 ---
 
 - name: Install and run Docker
-  hosts: all
+  hosts: api
   become: yes
   become_user: root
   tasks:
