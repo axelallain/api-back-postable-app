@@ -12,7 +12,7 @@ unit-test-job:   # This job runs in the test stage.
 
 # You can add another job in the same stage. Both jobs will run at the same time.
 
-build-job:       # This job runs in the build stage, which runs first.
+build-job:       # This job runs in the build stage, which runs first..
   stage: build
   image: docker:20.10
   services:
