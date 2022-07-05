@@ -1,0 +1,35 @@
+---
+
+- name: Install PostgreSQL
+  hosts: database
+  become: yes
+  become_user: root
+  collections:
+    - Community.Postgresql
+  tasks:
+    - name: Download PostgreSQL using yum.
+      ansible.builtin.yum:
+        name:
+          - postgresql-server
+          - postgresql-contrib
+        state: latest
+        update_cache: true
+
+    - name: Find out if PostgreSQL is initialized"
+      ansible.builtin.stat:
+        path: "/var/lib/pgsql/data/pg_hba.conf"
+      register: postgres_data
+
+    - name: Initialize PostgreSQL.
+      ansible.builtin.shell: postgresql-setup initdb
+      when: not postgres_data.stat.exists
+
+    - name: Start postgresql service.
+      ansible.builtin.service:
+        name: postgresql
+        enabled: true
+        state: started
+
+    - name: Create the database.
+      community.postgresql.postgresql_db:
+        name: rasp
